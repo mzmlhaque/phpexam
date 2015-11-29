@@ -1,0 +1,39 @@
+#navbar{
+    background: blue;
+}
+
+#navbar a {
+    color: #fff;
+    font-size: 20px;
+}
+#navbar ul{
+    margin-left: 20%;
+}
+#navbar ul li{
+    margin: 0 10px;
+
+}
+.news-feed{
+    margin-top: 30px;
+}
+.news-feed ul li{
+    padding: 10px;
+    border-bottom: 1px dashed #aaaaaa;
+}
+.news-feed ul li a {
+    color: #3c763d;
+    font-size: 16px;
+
+}
+
+#footer {
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+    color: #fff;
+    padding: 30px;
+    margin-top: 95px;
+}
+.news-tag {
+    margin-bottom: 30px;
+    padding: 5px;
+    background: #ddd;
+}
