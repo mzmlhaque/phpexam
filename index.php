@@ -41,6 +41,7 @@
                         <li><a href="javascript:void (0)" onclick="ajax_request('about.php')">About</a></li>
                         <li><a href="javascript:void (0)" onclick="ajax_request('contact.php')">contact</a></li>
                         <li><a href="javascript:void (0)" onclick="ajax_request('login.php')">login</a></li>
+                        <li><a href="javascript:void (0)" onclick="ajax_request('employee_action.php')">Employee</a></li>
                     </ul>
                 </nav>
             </div>
