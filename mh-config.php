@@ -2,25 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: Mozammel
- * Date: 11/15/2015
- * Time: 6:20 PM
+ * Date: 11/30/15
+ * Time: 9:41 AM
  */
-
-$n = 20;
-while($n){
-
+$database_user="root";
+$databse_pass="";
+$database_name='employee';
 ?>
-
-<h2>Hello World !</h2></br>
-
-<?php
-    echo $n;
-    $n--;
-}
-//setcookie('visited',25352,time()+25565);
-
-//session_start();
-
-echo '<br>'. $_COOKIE['visited'];
-
 ?>

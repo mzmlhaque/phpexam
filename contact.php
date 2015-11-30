@@ -18,7 +18,7 @@
         <h3 class="text-center">Please left your message:</h3>
         <div class="col-sm-4"></div>
         <div class="col-sm-8">
-            <form action="" class="form-group">
+            <form class="form-group" action="mail.php" method="post">
                 <label for="name">Name: </label><sup class="text-danger">*</sup><br>
                 <input type="text" id="name" name="name" required class="form-control"><br>
                 <label for="email">E-mail</label><sup class="text-danger">*</sup><br>
