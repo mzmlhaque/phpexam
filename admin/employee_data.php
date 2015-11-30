@@ -1,22 +1,29 @@
+<?php
+
+include('../pdo_connection.php');
+include('../database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+if(isset($_REQUEST['name'])){
+    $req_name = $_REQUEST['name'];
+    $sql="SELECT * FROM employee_profile WHERE name LIKE '$req_name'";
+}elseif(isset($_REQUEST['department']))
+{
+    $req_dept = $_REQUEST['department'];
+    $sql="SELECT * FROM employee_profile WHERE department = '$req_dept'";
+}
+else
+{
+    $sql="SELECT * FROM employee_profile";
+}
+$data = $dbcon->query($sql);
+?>
+
+
 <h2>ABCD Compnay Employee Data</h2>
-<div class="row">
-    <div class="col-xs-12">
-        <div class="well">
-            <br><br><br>
-            <label for="">Search with Employee Name: </label>
-            <input type="text" id=" placeholder="Jane Doe">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <label for="">Search with Department</label>
-            <select name="department" id="department">
-                <option selected>-select department-</option>
-                <option value="dept">Examplle Dept</option>
-                <option value="dept">Examplle Dept</option>
-                <option value="dept">Examplle Dept</option>
-                <option value="dept">Examplle Dept</option>
-            </select>
-        </div>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-xs-12">
         <table class="table table-bordered table-hover" summary="all employee data">
@@ -32,116 +39,24 @@
             </tr>
             </thead>
             <tbody>
+            <?php
+            $c = 1;
+                while($row = $data->fetch(PDO::FETCH_ASSOC)){
+                    ?>
             <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
+                <td><?php echo $c?></td>
+                <td><?php echo $row['id']?></td>
+                <td><?php echo $row['name']?></td>
+                <td><?php echo $row['designation']?></td>
                 <td>Active</td>
                 <td>
                     <button class="btn btn-success">Edit</button>
                     <button class="btn btn-primary">View</button>
                 </td>
             </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
-            <tr>
-                <td>001</td>
-                <td>234</td>
-                <td>Mozammel Haque</td>
-                <td>Executive Director</td>
-                <td>Active</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-primary">View</button>
-                </td>
-            </tr>
+            <?php $c++;
+                }
+            ?>
             </tbody>
             <tfoot>
             <tr>

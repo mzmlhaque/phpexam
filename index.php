@@ -1,3 +1,15 @@
+<?php
+include('pdo_connection.php');
+include('database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+$sql="SELECT * FROM settings";
+$data = $dbcon->query($sql);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +41,13 @@
 <section id="header">
     <div class="container-fluid">
         <div class="row" style="padding: 20px;background: #204d74;color: orange;">
-                <h2 class="text-center">Wellcome to Our StartUp company</h2>
+                <h2 class="text-center">
+                    <?php
+                    while($row = $data->fetch(PDO::FETCH_ASSOC)){
+                        echo $row['companyName'];
+                    }
+                    ?>
+                </h2>
         </div>
     </div>
     <div class="container">
@@ -65,32 +83,14 @@
                 </div>
                 <MARQUEE direction="up" behavior="scroll" height="300px">
                     <ul class="list-unstyled">
-                        <li><a href="">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, illo.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eligendi quo ullam.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorem error labore tempore, tenetur vero.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur assumenda deserunt earum ipsa ipsum modi omnis quae quod repudiandae.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, modi repellendus?</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium inventore ipsa provident voluptatem!</a></li>
+                        <?php
+                        while($row = $data->fetch(PDO::FETCH_ASSOC)){
+                        ?>
+                        <li><a href=""><?php echo $row['latestNews']?></a></li>
 
-                        <li><a href="">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, illo.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eligendi quo ullam.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorem error labore tempore, tenetur vero.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur assumenda deserunt earum ipsa ipsum modi omnis quae quod repudiandae.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, modi repellendus?</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium inventore ipsa provident voluptatem!</a></li>
-
-                        <li><a href="">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, illo.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci eligendi quo ullam.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorem error labore tempore, tenetur vero.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit!</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aspernatur assumenda deserunt earum ipsa ipsum modi omnis quae quod repudiandae.</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, modi repellendus?</a></li>
-                        <li><a href="">Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium inventore ipsa provident voluptatem!</a></li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </MARQUEE>
             </div>

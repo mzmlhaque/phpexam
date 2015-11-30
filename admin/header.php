@@ -5,6 +5,14 @@
  * Date: 11/30/2015
  * Time: 1:34 PM
  */
+include('../pdo_connection.php');
+include('../database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+$sql="SELECT * FROM settings";
+$data = $dbcon->query($sql);
 
 ?>
 
@@ -44,7 +52,13 @@
 <section id="header">
     <div class="container-fluid">
         <div class="row" style="padding: 20px;background: #204d74;color: orange;">
-            <h2 class="text-center">Wellcome to Our StartUp company</h2>
+            <h2 class="text-center">
+                <?php
+                   while($row = $data->fetch(PDO::FETCH_ASSOC)){
+                       echo $row['companyName'];
+                   }
+                ?>
+            </h2>
         </div>
     </div>
     <div class="container">
