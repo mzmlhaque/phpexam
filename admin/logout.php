@@ -7,6 +7,6 @@
  */
 session_start();
 session_destroy();
-echo("<script>alert(\"Loged Out\");</script>");
+//echo("<script>alert(\"Loged Out\");</script>");
 echo("<script>location.href='../index.php'</script>");
 ?>

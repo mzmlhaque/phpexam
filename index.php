@@ -5,9 +5,11 @@ $db_user =$database_user;
 $db_pass =$databse_pass;
 $db_name=$database_name;
 $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
-$sql="SELECT * FROM settings";
+$sql="SELECT * FROM settings WHERE id=1";
 $data = $dbcon->query($sql);
-
+$row = $data->fetch(PDO::FETCH_ASSOC);
+session_start();
+$_SESSION['companyName']= $row['companyName'];
 
 ?>
 <!DOCTYPE html>
@@ -43,9 +45,7 @@ $data = $dbcon->query($sql);
         <div class="row" style="padding: 20px;background: #204d74;color: orange;">
                 <h2 class="text-center">
                     <?php
-                    while($row = $data->fetch(PDO::FETCH_ASSOC)){
-                        echo $row['companyName'];
-                    }
+                    echo $_SESSION['companyName'];
                     ?>
                 </h2>
         </div>
@@ -58,8 +58,16 @@ $data = $dbcon->query($sql);
                         <li><a href="index.php">Home</a></li>
                         <li><a href="javascript:void (0)" onclick="ajax_request('about.php')">About</a></li>
                         <li><a href="javascript:void (0)" onclick="ajax_request('contact.php')">contact</a></li>
-                        <li><a href="javascript:void (0)" onclick="ajax_request('login.php')">login</a></li>
-                        <li><a href="javascript:void (0)" onclick="ajax_request('employee_action.php')">Employee</a></li>
+                        <?php
+                            if(isset($_SESSION['e_id'])){
+                                echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'logout.php\')">login</a></li>';
+                            }else{
+                                //echo ' <li><a href="login.php">login</a></li>';
+                                echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'signup.php\')">Sign UP</a></li>';
+                                echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'login.php\')">login</a></li>';
+                            }
+                        ?>
+
                     </ul>
                 </nav>
             </div>
@@ -84,6 +92,9 @@ $data = $dbcon->query($sql);
                 <MARQUEE direction="up" behavior="scroll" height="300px">
                     <ul class="list-unstyled">
                         <?php
+                        $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+                        $sql="SELECT * FROM settings";
+                        $data = $dbcon->query($sql);
                         while($row = $data->fetch(PDO::FETCH_ASSOC)){
                         ?>
                         <li><a href=""><?php echo $row['latestNews']?></a></li>

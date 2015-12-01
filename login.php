@@ -1,3 +1,38 @@
+<?php
+    if(isset($_SESSION['username']) && isset($_SESSION['logged_role']) && isset($_SESSION['password'])){
+        echo("<script>location.href='employee_action.php'</script>");
+    }elseif(isset($_POST['login'])){
+        $logged_role = $_POST['login_role'];
+        $username = $_POST['useremail'];
+        $password =$_POST['password'];
+        if($logged_role == 'admin'){
+            echo("<script>location.href=\"admin/index.php?username=$username&password=$password\"</script>");
+        }else{
+            include('pdo_connection.php');
+            include('database_config.php');
+            $db_user =$database_user;
+            $db_pass =$databse_pass;
+            $db_name=$database_name;
+            $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+            $sql="SELECT * FROM employee_profile WHERE email = '$username' AND password = '$password'";
+            $data = $dbcon->query($sql);
+            $row = $data->fetch(PDO::FETCH_ASSOC);
+            if($row['email'] == $username && $row['password'] == $password) {
+                session_start();
+                $_SESSION['logged_role'] = $logged_role;
+                $_SESSION['username'] = $row['email'];
+                $_SESSION['password'] = $row['password'];
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['e_id'] = $row['e_id'];
+                echo("<script>location.href='employee.php'</script>");
+            }else {
+                echo("<script>alert('Username or Password not matched.')</script>");
+                echo("<script>location.href='index.php'</script>");
+            }
+        }
+    }
+
+?>
 <div class="container">
     <div class="container">
         <div class="row">
@@ -14,9 +49,9 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                <form id="login-form" action="login.php" method="post" role="form" style="display: block;">
                                     <div class="form-group">
-                                        <select name="login_type" id="login_type" class="form-control">
+                                        <select name="login_role" id="login_type" class="form-control">
                                             <option value="">--Your are--</option>
                                             <option value="admin">Admin</option>
                                             <option value="employe">Employe</option>
