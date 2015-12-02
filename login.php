@@ -1,4 +1,12 @@
 <?php
+include('pdo_connection.php');
+include('database_config.php');
+$db_user =$database_user;
+$db_pass =$databse_pass;
+$db_name=$database_name;
+$dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
+session_start();
+
     if(isset($_SESSION['username']) && isset($_SESSION['logged_role']) && isset($_SESSION['password'])){
         echo("<script>location.href='employee_action.php'</script>");
     }elseif(isset($_POST['login'])){
@@ -6,19 +14,20 @@
         $username = $_POST['useremail'];
         $password =$_POST['password'];
         if($logged_role == 'admin'){
-            echo("<script>location.href=\"admin/index.php?username=$username&password=$password\"</script>");
+            $sql="SELECT * FROM settings WHERE username = '$username' AND password = '$password'";
+            $data = $dbcon->query($sql);
+            $row = $data->fetch(PDO::FETCH_ASSOC);
+            if($row['username'] == $username && $row['password'] == $password) {
+                $_SESSION['logged_role'] = $logged_role;
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['password'] = $row['password'];
+                echo("<script>location.href='admin/index.php'</script>");
+            }
         }else{
-            include('pdo_connection.php');
-            include('database_config.php');
-            $db_user =$database_user;
-            $db_pass =$databse_pass;
-            $db_name=$database_name;
-            $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
             $sql="SELECT * FROM employee_profile WHERE email = '$username' AND password = '$password'";
             $data = $dbcon->query($sql);
             $row = $data->fetch(PDO::FETCH_ASSOC);
             if($row['email'] == $username && $row['password'] == $password) {
-                session_start();
                 $_SESSION['logged_role'] = $logged_role;
                 $_SESSION['username'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
@@ -54,7 +63,7 @@
                                         <select name="login_role" id="login_type" class="form-control">
                                             <option value="">--Your are--</option>
                                             <option value="admin">Admin</option>
-                                            <option value="employe">Employe</option>
+                                            <option value="employee">Employee</option>
                                         </select>
 
                                     </div>
