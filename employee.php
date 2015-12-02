@@ -6,7 +6,6 @@
  * Time: 2:35 AM
  */
 session_start();
-
 if(isset($_SESSION['logged_role']) and $_SESSION['logged_role']== 'employee'){
     include_once('/inc/template_part_employee.php');
 }else{

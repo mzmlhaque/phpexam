@@ -35,7 +35,7 @@ function ajax_email_check(location) {
            // place.innerHTML = xhttp.responseText;
         }
     };
-    xhttp.open("GET", 'process.php?email_check=' + location, true);
+    xhttp.open("GET", location, true);
     xhttp.send();
 
 }

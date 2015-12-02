@@ -90,7 +90,7 @@ $_SESSION['companyName']= $row['companyName'];
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3" required onkeyup="ajax_email_check(this.value)">
+                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3" required onkeyup="ajax_email_check('process.php?email_check=' + this.value)">
                     </div>
                     <div class="form-group">
                         <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="4" required>

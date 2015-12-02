@@ -49,7 +49,7 @@ include_once('header.php');
             <br>
             <br>
             <br>
-            <button class="btn btn-primary">Edit Employee Profile</button>
+            <a href="edit_employee.php"><button class="btn btn-primary">Edit Employee Profile</button></a>
         </div>
     </div>
 </div>
