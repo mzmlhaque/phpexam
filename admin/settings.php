@@ -17,40 +17,69 @@ if(isset($_SESSION['logged_role']) and $_SESSION['logged_role']== 'admin'){
     $sql="SELECT * FROM settings;";
     $data = $dbcon->query($sql);
     $row = $data->fetch(PDO::FETCH_ASSOC);
-    print_r($row);
 }else{
     echo("<script>location.href='404.php'</script>");
 }
 ?>
 <section id="settings_form">
     <div class="container">
-        <form action="setting_process.php" method="post" enctype="multipart/form-data">
-            <h2>Company Settings: </h2>
-            <hr class="colorgraph">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="cName">Name Of Company: </label>
-                        <input type="text" name="company_name" id="cName" class="form-control" placeholder="Company Name" value="<?php echo $row['companyName']?>" required>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="cInfo">Company Informatin (to be used in about page): </label>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <form action="setting_process.php" method="post" enctype="multipart/form-data">
+                    <h2>Company Settings: </h2>
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cName">Name Of Company: </label>
+                                <input type="text" name="company_name" id="cName" class="form-control" placeholder="Company Name" value="<?php echo $row['companyName']?>" required>
+                            </div>
+                        </div>
+
+
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="lNews">Add a Latest news: </label>
+                                        <input type="text" name="latest_news" id="lNews" class="form-control" placeholder="Latest News"  required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="adminName">Admin Name: </label>
+                                        <input type="text" name="admin_name" id="adminName" class="form-control" placeholder="Name of Admin" value="<?php echo $row['adminName']?>"  required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="adminUserName">Admin Username: </label>
+                                        <input type="email" value="<?php echo $row['username']?>" name="username" id="adminUser" class="form-control" placeholder="Admin Username (email)"  required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <label for="adminPassword">Admin Password: </label>
+                                        <input type="password" value="<?php echo $row['password']?>" name="password" id="adminPassword" class="form-control"  required>
+                                    </div>
+                                </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cInfo">Company Informatin (to be used in about page): </label>
                     <textarea class="form-control" required placeholder="compnay information"  name="company_info" id="cInfo" cols="30" rows="10">
                     <?php echo $row['companyInfo']?>
                     </textarea>
-
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="lNews">Add a Latest news: </label>
-                                <input type="text" name="latest_news" id="lNews" class="form-control" placeholder="Latest News"  required>
+                            </div>
+                        </div>
+                                <div class="col-xs-12">
+                                    <div class="form-group">
+                                        <button type="submit" value="update" name="submit" class="btn btn-block btn-primary btn-lg">Update Settings</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 
