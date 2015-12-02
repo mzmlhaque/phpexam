@@ -36,6 +36,9 @@
         #navbar ul {
             margin-left: 5%;
         }
+        #navbar ul li {
+            margin: 0 8px;
+        }
     </style>
 </head>
 <body onload="ajax_employee_data('employee_data.php')">
@@ -57,7 +60,8 @@
                 <nav id="navbar">
                     <ul class="list-inline" style="padding: 15px;" id="menu">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="add_employee.php">Add Employee</a></li>
+                        <li><a href="settings.php.php">Settings</a></li>
+                        <li><a href="../signup.php">Add Employee</a></li>
                         <li><a href="employee_status.php">Employee Status</a></li>
                         <li><a href="leav_manage.php">Leave Manage</a></li>
                         <li><a href="accounts.php">Accounts</a></li>

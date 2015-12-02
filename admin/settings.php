@@ -35,12 +35,19 @@ if(isset($_SESSION['logged_role']) and $_SESSION['logged_role']== 'admin'){
                                 <input type="text" name="company_name" id="cName" class="form-control" placeholder="Company Name" value="<?php echo $row['companyName']?>" required>
                             </div>
                         </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cEmail">Compnay Email: </label>
+                                <input type="email" name="company_email" id="cEmail" class="form-control" placeholder="Company Name" value="<?php echo $row['companyEmail']?>" required>
+                            </div>
+                        </div>
 
 
                                 <div class="col-xs-12">
                                     <div class="form-group">
                                         <label for="lNews">Add a Latest news: </label>
-                                        <input type="text" name="latest_news" id="lNews" class="form-control" placeholder="Latest News"  required>
+                                        <input type="text" name="latest_news" id="lNews" class="form-control" placeholder="Latest News">
                                     </div>
                                 </div>
                                 <div class="col-xs-12">
