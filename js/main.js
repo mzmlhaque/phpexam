@@ -16,6 +16,28 @@ function ajax_request(location) {
     };
     xhttp.open("GET", location, true);
     xhttp.send();
+
+}
+function ajax_email_check(location) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var place = document.getElementById("mail_error");
+            var result =  xhttp.responseText;
+            var s = document.getElementById("submit");
+            var s_before = 'btn btn-primary btn-block btn-lg';
+            if(result !=''){
+                s.className = s.className + " disabled";
+                alert(result+ ' is already used. Please try with a different email address...');
+            }else{
+                s.className = s_before;
+            }
+           // place.innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("GET", 'process.php?email_check=' + location, true);
+    xhttp.send();
+
 }
 
 function ajax_employee_sort(name) {

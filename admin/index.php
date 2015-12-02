@@ -88,10 +88,16 @@ $data = $dbcon->query($sql);
                     <label for="">Search with Department</label>
                     <select name="department" id="department" onchange="ajax_employee_sort('department=' + this.value)">
                         <option selected>-select department-</option>
-                        <option value="Technology">Technology</option>
-                        <option value="dept">Examplle Dept</option>
-                        <option value="dept">Examplle Dept</option>
-                        <option value="dept">Examplle Dept</option>
+                        <?php
+                        $sql="SELECT departments FROM settings;";
+                        $data = $dbcon->query($sql);
+                        while($row = $data->fetch(PDO::FETCH_ASSOC)){
+                            $departments = $row['departments'];
+                            if($departments !=''){
+                                echo "<option value='$departments'>$departments</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
             </div>

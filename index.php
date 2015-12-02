@@ -60,10 +60,10 @@ $_SESSION['companyName']= $row['companyName'];
                         <li><a href="javascript:void (0)" onclick="ajax_request('contact.php')">contact</a></li>
                         <?php
                             if(isset($_SESSION['e_id'])){
-                                echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'logout.php\')">login</a></li>';
+                                echo ' <li><a href="logout.php">logout</a></li>';
                             }else{
                                 //echo ' <li><a href="login.php">login</a></li>';
-                                echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'signup.php\')">Sign UP</a></li>';
+                                echo ' <li><a href="signup.php">Sign UP</a></li>';
                                 echo ' <li><a href="javascript:void (0)" onclick="ajax_request(\'login.php\')">login</a></li>';
                             }
                         ?>
@@ -117,6 +117,11 @@ $_SESSION['companyName']= $row['companyName'];
         <p class="copyright text-center">&copy; All right reserved- 2015</p>
     </div>
 </section>
+<script>
+    $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    });
 
+</script>
 </body>
 </html>
