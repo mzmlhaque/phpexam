@@ -93,7 +93,7 @@ $_SESSION['companyName']= $row['companyName'];
                     <ul class="list-unstyled">
                         <?php
                         $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
-                        $sql="SELECT * FROM settings";
+                        $sql="SELECT * FROM settings ORDER BY id DESC";
                         $data = $dbcon->query($sql);
                         while($row = $data->fetch(PDO::FETCH_ASSOC)){
                         ?>
