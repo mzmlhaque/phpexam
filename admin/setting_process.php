@@ -21,7 +21,7 @@ if(isset($_SESSION['logged_role']) and $_SESSION['logged_role']== 'admin'){
         $admin_name = htmlentities($_POST['admin_name']);
         $username =  htmlentities($_POST['username']);
         $password =  htmlentities($_POST['password']);
-        $company_info = htmlentities($_POST['company_info']);
+        $company_info = $_POST['company_info'];
         if($latest_news != ''){
             $sql = "INSERT INTO `employee`.`settings` (`id`,`latestNews`) VALUES (NULL, '$latest_news');";
             $preparestatement = $dbcon->prepare($sql);

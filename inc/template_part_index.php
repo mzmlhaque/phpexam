@@ -60,7 +60,7 @@
                 <nav id="navbar">
                     <ul class="list-inline" style="padding: 15px;" id="menu">
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="settings.php.php">Settings</a></li>
+                        <li><a href="settings.php">Settings</a></li>
                         <li><a href="add_employee.php">Add Employee</a></li>
                         <li><a href="employee_status.php">Employee Status</a></li>
                         <li><a href="leav_manage.php">Leave Manage</a></li>

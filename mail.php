@@ -20,7 +20,7 @@
       if( mail($admin_email, "$subject", $message, "From:" . $email)){
           echo("<script>alert(\"Thank you for contacting us!\");</script>");
           echo("<script>location.href='index.php'</script>");
-      }else{
+      }else {
           echo("<script>alert(\"Somethin went wrong!\");</script>");
           echo("<script>location.href='index.php'</script>");
       }
