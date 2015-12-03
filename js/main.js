@@ -74,6 +74,19 @@ function ajax_employee_entry(logged,location) {
     xhttp.open("GET", location+'?action='+logged, true);
     xhttp.send();
 }
+function ajax_delete_employee(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            if(xhttp.responseText=='Deleted'){
+                var body = document.getElementsByTagName('body');
+                location.href='index.php';
+            }
+        }
+    };
+    xhttp.open("GET", 'delete_employee.php?e_id='+id, true);
+    xhttp.send();
+}
 function add_reason(){
     var action = document.getElementById('action').value;
     var reason = document.getElementById('reason');

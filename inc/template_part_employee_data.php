@@ -12,10 +12,10 @@ $db_user =$database_user;
 $db_pass =$databse_pass;
 $db_name=$database_name;
 $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
-if(isset($_REQUEST['name'])){
+if(isset($_REQUEST['name']) && $_REQUEST['name']!=''){
     $req_name = $_REQUEST['name'];
     $sql="SELECT * FROM employee_profile WHERE name LIKE '$req_name'";
-}elseif(isset($_REQUEST['department']))
+}elseif(isset($_REQUEST['department']) && $_REQUEST['department']!=(null))
 {
     $req_dept = $_REQUEST['department'];
     $sql="SELECT * FROM employee_profile WHERE department = '$req_dept'";
@@ -60,6 +60,7 @@ $data = $dbcon->query($sql);
                         <td>
                             <a href="edit_employee.php?e_id=<?php echo $row['e_id']?>"><button class="btn btn-success">Edit</button></a>
                             <a href="profile.php?e_id=<?php echo $row['e_id']?>"><button class="btn btn-primary">View</button></a>
+                            <button class="btn btn-danger" onclick="ajax_delete_employee(<?php echo $row['e_id']?>)">Delete</button>
 
                         </td>
                     </tr>

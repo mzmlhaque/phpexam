@@ -60,7 +60,7 @@ $_SESSION['companyName']= $row['companyName'];
                         <li><a href="javascript:void (0)" onclick="ajax_request('about.php')">About</a></li>
                         <li><a href="javascript:void (0)" onclick="ajax_request('contact.php')">contact</a></li>
                         <?php
-                            if(isset($_SESSION['e_id'])){
+                            if(isset($_SESSION['logged_role'])){
                                 echo ' <li><a href="logout.php">logout</a></li>';
                             }else{
                                 //echo ' <li><a href="login.php">login</a></li>';

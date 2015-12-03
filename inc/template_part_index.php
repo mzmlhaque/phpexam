@@ -86,7 +86,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <label for="">Search with Department</label>
                     <select name="department" id="department" onchange="ajax_employee_sort('department=' + this.value)">
-                        <option selected>-select department-</option>
+                        <option selected value="">-select department-</option>
                         <?php
                         $sql="SELECT departments FROM settings;";
                         $data = $dbcon->query($sql);
