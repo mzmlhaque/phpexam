@@ -9,9 +9,11 @@
 //if "email" variable is filled out, send email
   if (isset($_REQUEST['email']))  {
       //Email information
-      $admin_email = "mzmlhaque61@gmail.com";
+      session_start();
+      $companyName =$_SESSION['companyName'];
+      $admin_email = $_SESSION['companyEmail'];
       $email = $_POST['email'];
-      $subject = "New Mail from your website";//$_POST['subject'];
+      $subject = "New Mail from your website: $companyName";
       $message = $_POST['message'];
       //send email
       //Email response

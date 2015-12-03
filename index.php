@@ -10,6 +10,7 @@ $data = $dbcon->query($sql);
 $row = $data->fetch(PDO::FETCH_ASSOC);
 session_start();
 $_SESSION['companyName']= $row['companyName'];
+$_SESSION['companyEmail']= $row['companyEmail'];
 
 ?>
 <!DOCTYPE html>
