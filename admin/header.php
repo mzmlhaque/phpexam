@@ -5,6 +5,7 @@
  * Date: 11/30/2015
  * Time: 1:34 PM
  */
+error_reporting(0);
 include('../pdo_connection.php');
 include('../database_config.php');
 $db_user =$database_user;
@@ -13,7 +14,8 @@ $db_name=$database_name;
 $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
 $sql="SELECT * FROM settings";
 $data = $dbcon->query($sql);
-
+session_start();
+$companyName = $_SESSION['companyName']
 ?>
 
 <!DOCTYPE html>
@@ -55,13 +57,17 @@ $data = $dbcon->query($sql);
 <section id="header">
     <div class="container-fluid">
         <div class="row" style="padding: 20px;background: #204d74;color: orange;">
-            <h2 class="text-center">
+
                 <?php
-                   while($row = $data->fetch(PDO::FETCH_ASSOC)){
-                       echo $row['companyName'];
-                   }
+
+                echo "<h2 class=\"text-center\">$companyName</h2>";
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                    echo "<h3 class='text-left'>$page</h3>";
+                }
                 ?>
-            </h2>
+
+
         </div>
     </div>
     <div class="container">
@@ -69,12 +75,12 @@ $data = $dbcon->query($sql);
             <div class="col-md-12">
                 <nav id="navbar">
                     <ul class="list-inline" style="padding: 15px;" id="menu">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="settings.php">Settings</a></li>
-                        <li><a href="add_employee.php">Add Employee</a></li>
-                        <li><a href="employee_status.php">Employee Status</a></li>
-                        <li><a href="leav_manage.php">Leave Manage</a></li>
-                        <li><a href="accounts.php">Accounts</a></li>
+                        <li><a href="index.php?page=Home">Home</a></li>
+                        <li><a href="settings.php?page=Settings">Settings</a></li>
+                        <li><a href="add_employee.php?page=Employee+adding+system">Add Employee</a></li>
+                        <li><a href="employee_status.php?page=Employee+status">Employee Status</a></li>
+                        <li><a href="leav_manage.php?page=Leave+Management">Leave Manage</a></li>
+                        <li><a href="accounts.php?page=Accounts">Accounts</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </nav>

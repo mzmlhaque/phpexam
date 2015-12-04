@@ -74,6 +74,18 @@ function ajax_employee_entry(logged,location) {
     xhttp.open("GET", location+'?action='+logged, true);
     xhttp.send();
 }
+function ajax_employee_leave_manage(e_id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var response = xhttp.responseText;
+            var place = document.getElementById('employee_leave_remaining');
+            place.innerHTML = response ;
+        }
+    };
+    xhttp.open("GET", 'leave_manage_ajax.php?e_id='+e_id, true);
+    xhttp.send();
+}
 function ajax_delete_employee(id) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
