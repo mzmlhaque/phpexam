@@ -50,10 +50,26 @@ if(isset($_POST['submit']) && isset($e_id)){
                 echo("<script>alert('You already Enrolled today....')</script>");
                 echo("<script>location.href='index.php'</script>");
             }else{
-                $sql="UPDATE `employee`.`employee_time_in` SET `time_out` = (SELECT CURRENT_TIME), `hours` = '5'  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
+
+                $sql="UPDATE `employee`.`employee_time_in` SET `time_out` = (SELECT CURRENT_TIME)  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
                 $preparestatement=$dbcon->prepare($sql);
                 $preparestatement->execute();
-                echo("<script>alert('Successfully Recorded..!!')</script>");
+
+                /***********************************
+                    Collecting Worked Hours
+                 *********************** **********/
+                $sql="SELECT (SELECT TIMEDIFF((SELECT time_out FROM employee_time_in WHERE date=(SELECT CURRENT_DATE)AND e_id = $e_id),(SELECT time_in FROM employee_time_in WHERE date=(SELECT CURRENT_DATE)AND e_id = $e_id))) as hour";
+                $data = $dbcon->query($sql);
+                $row = $data->fetch(PDO::FETCH_ASSOC);
+
+                $hours = $row['hour'];
+
+              $sql="UPDATE `employee`.`employee_time_in` SET `hours` = '$hours'  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
+                $preparestatement=$dbcon->prepare($sql);
+               $preparestatement->execute();
+
+                echo("<script>alert('Enrolled successfully. Today You worked $hours hours.')</script>");
+                echo("<script>location.href='index.php'</script>");
             }
         }
     }else{
