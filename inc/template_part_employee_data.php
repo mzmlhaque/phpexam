@@ -74,7 +74,7 @@ $data = $dbcon->query($sql);
             </tbody>
             <tfoot>
             <tr>
-                <td class="text-center" colspan="5">Developed by: <a target="_blank" href="http://aponsite.com">Mozammel Haque</a> and directed by: <a href="mailto:rajesh@coderstrust.com">Rajesh Ghos</a>.</td>
+                <td class="text-center" colspan="5">Developed by: <a target="_blank" href="http://aponsite.com">Mozammel Haque</a> and directed by: <a href="mailto:rajesh@coderstrust.com">Rajesh Ghosh</a>.</td>
             </tr>
             </tfoot>
         </table>

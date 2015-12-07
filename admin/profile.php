@@ -6,7 +6,7 @@
  * Time: 8:02 PM
  */
 session_start();
-if(isset($_SESSION['logged_role']) && $_SESSION['logged_role']!='admin'){
+if(!isset($_SESSION['logged_role']) && $_SESSION['logged_role']!='admin'){
     echo "<script>location.href='404.php'</script>";
 }else{
     include_once('header.php');

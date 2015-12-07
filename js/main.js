@@ -3,6 +3,7 @@ var h = date.getHours();
 var m = date.getMinutes();
 var s = date.getSeconds();
 var time = h + ':' + m + ':' + s;
+document.getElementById("time_in").innerHTML = time;
 
 
 function ajax_request(location) {
@@ -11,7 +12,7 @@ function ajax_request(location) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             var place = document.getElementById("login");
             place.innerHTML = xhttp.responseText;
-            document.getElementById("time_in").innerHTML = time;
+            
         }
     };
     xhttp.open("GET", location, true);

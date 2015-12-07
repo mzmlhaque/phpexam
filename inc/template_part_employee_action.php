@@ -27,7 +27,7 @@ if(isset($_POST['submit']) && isset($e_id)){
             echo("<script>location.href='index.php'</script>");
         }else{
             if($action = 'time_in'){
-                $sql="INSERT INTO `employee`.`employee_time_in` (`id`, `e_id`, `date`, `time_in`,`reason`) VALUES (NULL, '$e_id', (SELECT CURRENT_DATE), (SELECT CURRENT_TIME), '$reason');";
+                $sql="INSERT INTO `employee_time_in` (`id`, `e_id`, `date`, `time_in`,`reason`) VALUES (NULL, '$e_id', (SELECT CURRENT_DATE), (SELECT CURRENT_TIME), '$reason');";
                 $preparestatement=$dbcon->prepare($sql);
                 $preparestatement->execute();
                 echo("<script>alert('Successfully Recorded..!!')</script>");
@@ -40,7 +40,7 @@ if(isset($_POST['submit']) && isset($e_id)){
                 echo("<script>alert('You already Enrolled today...')</script>");
                 echo("<script>location.href='index.php'</script>");
             }else{
-                $sql="INSERT INTO `employee`.`employee_time_in` (`id`, `e_id`, `date`, `time_in`) VALUES (NULL, '$e_id', (SELECT CURRENT_DATE), (SELECT CURRENT_TIME));";
+                $sql="INSERT INTO `employee_time_in` (`id`, `e_id`, `date`, `time_in`) VALUES (NULL, '$e_id', (SELECT CURRENT_DATE), (SELECT CURRENT_TIME));";
                 $preparestatement=$dbcon->prepare($sql);
                 $preparestatement->execute();
                 echo("<script>alert('Successfully Recorded..!!')</script>");
@@ -51,7 +51,7 @@ if(isset($_POST['submit']) && isset($e_id)){
                 echo("<script>location.href='index.php'</script>");
             }else{
 
-                $sql="UPDATE `employee`.`employee_time_in` SET `time_out` = (SELECT CURRENT_TIME)  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
+                $sql="UPDATE `employee_time_in` SET `time_out` = (SELECT CURRENT_TIME)  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
                 $preparestatement=$dbcon->prepare($sql);
                 $preparestatement->execute();
 
@@ -61,10 +61,9 @@ if(isset($_POST['submit']) && isset($e_id)){
                 $sql="SELECT (SELECT TIMEDIFF((SELECT time_out FROM employee_time_in WHERE date=(SELECT CURRENT_DATE)AND e_id = $e_id),(SELECT time_in FROM employee_time_in WHERE date=(SELECT CURRENT_DATE)AND e_id = $e_id))) as hour";
                 $data = $dbcon->query($sql);
                 $row = $data->fetch(PDO::FETCH_ASSOC);
-
                 $hours = $row['hour'];
 
-              $sql="UPDATE `employee`.`employee_time_in` SET `hours` = '$hours'  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
+              $sql="UPDATE `employee_time_in` SET `hours` = '$hours'  WHERE `e_id` = '$e_id' AND date = (SELECT CURRENT_DATE);";
                 $preparestatement=$dbcon->prepare($sql);
                $preparestatement->execute();
 
@@ -81,13 +80,13 @@ if(isset($_POST['submit']) && isset($e_id)){
     echo("<script>alert('Something Went Wrong.')</script>");
     echo("<script>location.href='index.php'</script>");
 }
-
+include_once('header.php');
 ?>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <div id="login">
-                <h4>HeY <?php echo $_SESSION['name']?>. Thanks you for using this system. You entry time is <span style="color:#d43f3a" id="time_in"></span></h4>
+                <h4>Hey <?php echo $_SESSION['name']?>. Thanks you for using this system. You entry time is <span style="color:#d43f3a" id="time_in"></span></h4>
                 <h4>Press Logout to exit from the system.</h4>
                 <a href="logout.php"><button class="btn btn-danger">Logout</button></a>
                 <br>
@@ -100,4 +99,14 @@ if(isset($_POST['submit']) && isset($e_id)){
     <!-- End row -->
 </div>
 <!-- End container -->
-
+<script>
+    var date = new Date();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    var time = h + ':' + m + ':' + s;
+    document.getElementById("time_in").innerHTML = time;
+</script>
+<?php
+include_once('footer.php');
+?>

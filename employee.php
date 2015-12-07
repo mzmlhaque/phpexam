@@ -7,9 +7,9 @@
  */
 session_start();
 if(isset($_SESSION['logged_role']) and $_SESSION['logged_role']== 'employee'){
-    include_once('/inc/template_part_employee.php');
+    include_once('inc/template_part_employee.php');
 }else{
-    include_once('/inc/404.php');
+    include_once('inc/404.php');
 }
 
 ?>

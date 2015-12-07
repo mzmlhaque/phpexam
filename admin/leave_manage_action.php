@@ -17,7 +17,7 @@ if(isset($_SESSION['logged_role']) && $_SESSION['logged_role']=='admin'){
         $db_pass =$databse_pass;
         $db_name=$database_name;
         $dbcon=$connection_object->connection('localhost',$db_user,$db_pass,$db_name);
-        $sql="UPDATE `employee`.`employee_profile` SET `leave_remaining` = '$leave' WHERE `employee_profile`.`e_id` = $e_id;";
+        $sql="UPDATE `employee_profile` SET `leave_remaining` = '$leave' WHERE `employee_profile`.`e_id` = $e_id;";
         $preparestatement = $dbcon->prepare($sql);
         $preparestatement->execute();
         echo("<script>location.href='leav_manage.php?page=Leave+Management&leave_status=updated'</script>");
