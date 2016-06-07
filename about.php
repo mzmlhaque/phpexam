@@ -15,7 +15,6 @@ $sql="SELECT * FROM settings";
 $data = $dbcon->query($sql);
 ?>
 
-//Practice with cloning on git
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
