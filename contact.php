@@ -40,10 +40,10 @@
         </div>
         <div class="col-sm-4">
             <h3>Mailing Address:</h3>
-            33/5, Alia Madrasha Road</br>
+            30/4, Alia Madrasha Road</br>
             Vatikashor <br>
             Mymensingh-2200 <br>
-            phone: +88 091 63846
+            phone: +880 1713 561290
         </div>
         <div class="col-sm-4">
             <h3>Mailing Address:</h3>
