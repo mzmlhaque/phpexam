@@ -13,6 +13,7 @@ $_SESSION['companyName']= $row['companyName'];
 $_SESSION['companyEmail']= $row['companyEmail'];
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
