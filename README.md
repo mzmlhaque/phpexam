@@ -1,0 +1,2 @@
+# phpexam
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/22be85bc462a4b148d7e1dca91703418)](https://www.codacy.com/app/mzmlhaque61/phpexam?utm_source=github.com&utm_medium=referral&utm_content=mzmlhaque/phpexam&utm_campaign=badger)
